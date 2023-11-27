@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     
     void UpdateHealthAndMoneyText()
     {
-        healthAndMoneyText.text = $"Health: {health} \nMoney: {money}";
+        //healthAndMoneyText.text = $"Health: {health} \nMoney: {money}";
     }
 
     void GameOver()

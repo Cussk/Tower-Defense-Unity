@@ -29,7 +29,7 @@ public class Tower : MonoBehaviour
 
     float _lastAttackTime;
 
-    private void Update()
+    void Update()
     {
         CheckTimeSinceLastAttack();
     }
@@ -102,7 +102,15 @@ public class Tower : MonoBehaviour
 
     void Attack()
     {
+        if (rotateTowardsTarget)
+        {
+            Transform towerTransform;
+            (towerTransform = transform).LookAt(_currentEnemy.transform);
+            towerTransform.eulerAngles = new Vector3(0, towerTransform.eulerAngles.y, 0);
+        }
         
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.identity);
+        projectile.GetComponent<Projectile>().Initialize(_currentEnemy, projectileDamage, projectileSpeed);
     }
 
     void OnTriggerEnter(Collider other)
